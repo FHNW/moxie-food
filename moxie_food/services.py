@@ -32,14 +32,15 @@ class FoodService(Service):
         kv_store.set(self._get_key(KEY_MEAL), data)
         self._set_last_updated()
 
-    def get_meal(self):
+    def get_meals(self):
         """Get meal data from storage
         :return: Meal domain object
         """
-        meal = kv_store.get(self._get_key(KEY_MEAL))
-        if not meal:
-            return None
-        return Meal.from_dict(json.loads(obs))
+        data = kv_store.get(self._get_key(KEY_MEAL))
+        if not data:
+            return []
+        meals = json.loads(data)
+        return [Meal.from_dict(meal) for meal in meals]
 
     def get_attribution(self):
         """Returns a dictionary containing attribution data

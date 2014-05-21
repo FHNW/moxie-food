@@ -3,24 +3,17 @@ from celery.utils.log import get_task_logger
 from moxie import create_app
 from moxie.worker import celery
 
-from moxie_weather.services import WeatherService
+from moxie_food.services import FoodService
+
 
 logger = get_task_logger(__name__)
 
-BLUEPRINT_NAME = 'weather'
+BLUEPRINT_NAME = 'food'
 
 
 @celery.task
-def import_weather_observation():
+def import_meals():
     app = create_app()
     with app.blueprint_context(BLUEPRINT_NAME):
-        service = WeatherService.from_context()
-        service.import_observation()
-
-
-@celery.task
-def import_weather_forecasts():
-    app = create_app()
-    with app.blueprint_context(BLUEPRINT_NAME):
-        service = WeatherService.from_context()
-        service.import_forecasts()
+        service = FoodService.from_context()
+        service.import_meals()
