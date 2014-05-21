@@ -13,7 +13,7 @@ Moxie blueprint: ::
           FoodService:
               providers:
                   moxie_food.providers.svgroup.FhnwSvGroupFoodProvider:
-                      url: 'http://localhost:8000/menuplan.html'
+                      url: 'http://fhnw.sv-group.ch/de.html'
           KVService:
               backend_uri: 'redis://localhost:6379/0'
 
