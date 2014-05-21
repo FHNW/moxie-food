@@ -23,10 +23,10 @@ class FhnwSvGroupFoodProvider(object):
 
     def import_meals(self):
         r = requests.get(self.url)
-        return iter(self._scrape_xml(r.text))
+        return iter(self._scrape_xml(r.text.encode('utf-8', 'ignore')))
 
     def _scrape_xml(self, content):
-        parser = etree.HTMLParser()
+        parser = etree.HTMLParser(encoding='utf-8')
         root = etree.fromstring(content, parser)
 
         for offer in root.iterfind('.//div[@class="offer"]'):

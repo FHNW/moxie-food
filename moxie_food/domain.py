@@ -22,7 +22,7 @@ class Meal(object):
         meal = Meal()
         meal.name = values['name']
         meal.description = values['description']
-        meal.description = values['description']
+        meal.menu_type = values['menu_type']
         meal.price_int = values['price_int']
         meal.price_ext = values['price_ext']
         return meal
